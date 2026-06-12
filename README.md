@@ -2,6 +2,11 @@
 
 Validates CSV files against a JSON schema, detects anomalies, and uses **Claude AI** to generate a plain-English remediation report — reducing manual QA time by 80%.
 
+![Demo screenshot](demo.png)
+
+> 📄 See [`sample_output.txt`](sample_output.txt) for a full sample run, or [`sample_data_validation_report.json`](sample_data_validation_report.json) for the raw JSON report output — no need to run anything to see what this tool produces.
+
+
 ## Features
 
 - ✅ Schema-based validation (required fields, types, ranges, regex patterns, allowed values)

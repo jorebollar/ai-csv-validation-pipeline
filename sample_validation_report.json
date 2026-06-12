@@ -1,0 +1,84 @@
+{
+  "file_path": "sample_data.csv",
+  "timestamp": "2026-06-12T22:47:50.740240",
+  "total_rows": 11,
+  "total_columns": 7,
+  "issues": [
+    {
+      "column": "email",
+      "issue_type": "missing",
+      "row_indices": [
+        4
+      ],
+      "details": "1 rows have missing/empty values.",
+      "severity": "error"
+    },
+    {
+      "column": "email",
+      "issue_type": "pattern",
+      "row_indices": [
+        1,
+        9
+      ],
+      "details": "2 rows don't match expected format 'email'.",
+      "severity": "error"
+    },
+    {
+      "column": "signup_date",
+      "issue_type": "type_mismatch",
+      "row_indices": [
+        3
+      ],
+      "details": "1 rows have unparseable date values.",
+      "severity": "warning"
+    },
+    {
+      "column": "age",
+      "issue_type": "out_of_range",
+      "row_indices": [
+        7
+      ],
+      "details": "1 rows below minimum 13.",
+      "severity": "warning"
+    },
+    {
+      "column": "age",
+      "issue_type": "out_of_range",
+      "row_indices": [
+        2
+      ],
+      "details": "1 rows above maximum 120.",
+      "severity": "warning"
+    },
+    {
+      "column": "plan",
+      "issue_type": "pattern",
+      "row_indices": [
+        3
+      ],
+      "details": "1 rows contain values not in allowed list: ['free', 'pro', 'enterprise'].",
+      "severity": "warning"
+    },
+    {
+      "column": "country_code",
+      "issue_type": "pattern",
+      "row_indices": [
+        3
+      ],
+      "details": "1 rows don't match expected format '^[A-Z]{2}$'.",
+      "severity": "error"
+    }
+  ],
+  "duplicate_rows": 1,
+  "ai_summary": "The dataset contains 11 customer records with moderate data quality issues affecting roughly half the rows. The most critical problems are malformed and missing email addresses and an invalid country code, which would break downstream email campaigns and geo-based reporting. A duplicate customer record and several boundary-violating age values also need attention before this data is loaded into production.",
+  "ai_remediation": [
+    "Fix malformed emails: df['email'] = df['email'].str.strip().str.lower(); flag rows where '@' is missing (row 9: 'bob_at_example.com') for manual correction.",
+    "Drop or backfill missing emails: review row 4 and contact the customer or remove the record before import.",
+    "Standardize country codes to ISO 3166-1 alpha-2: df['country_code'] = df['country_code'].str.upper().str.strip() \u2014 fixes row 3 ('us' -> 'US').",
+    "Parse and correct invalid signup_date: pd.to_datetime(df['signup_date'], errors='coerce') then manually resolve row 3 ('not-a-date').",
+    "Clip or investigate out-of-range ages: df['age'] = df['age'].clip(lower=13, upper=120) for rows 2 and 7, or treat as data entry errors.",
+    "Remove duplicate row: df = df.drop_duplicates(subset=['customer_id', 'email']) to eliminate the repeated customer_id=1 record.",
+    "Re-run validation after fixes to confirm the file passes with --no-ai for a quick automated check in CI."
+  ],
+  "passed": false
+}
