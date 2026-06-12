@@ -1,0 +1,12 @@
+customer_id,email,phone,signup_date,age,plan,country_code
+1,alice@example.com,555-123-4567,2024-01-15,28,pro,US
+2,bob_at_example.com,555-987-6543,2024-02-20,34,enterprise,CA
+3,carol@example.com,,2024-03-10,150,free,GB
+4,dave@example.com,555-555-0000,not-a-date,22,premium,us
+5,,800-555-1212,2024-04-05,19,pro,
+6,eve@example.com,555-246-8101,2024-04-18,31,free,FR
+1,alice@example.com,555-123-4567,2024-01-15,28,pro,US
+7,frank@example.com,555-369-2580,2024-05-01,-5,enterprise,DE
+8,grace@example.com,,2024-05-15,27,free,JP
+9,heidi@example,555-111-2222,2024-06-01,45,pro,AU
+10,ivan@example.com,555-444-3333,2024-06-20,33,enterprise,BR
