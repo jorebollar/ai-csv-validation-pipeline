@@ -1,5 +1,7 @@
 # AI-Powered CSV Validation Pipeline
 
+![Demo output](demo_output.png)
+
 Validates CSV files against a JSON schema, detects anomalies, and uses **Claude AI** to generate a plain-English remediation report — reducing manual QA time by 80%.
 
 ![Demo screenshot](demo.png)
